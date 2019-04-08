@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+    <script src="{{ url_for('static', filename='scripts/register.js') }}"></script>
+{% endblock head %}
+{% block body %}
+    <form action="/register" method="post" id="registration">
+        <h2>REGISTRATION</h2>
+        <input type="email" name="email" id="email" placeholder="Email">
+        <span class="error"></span>
+        <input type="email" name="e_conf" id="e_conf" placeholder="Confirm Email">
+        <span class="error"></span>
+        <hr>
+        <input type="password" name="password" id="password" placeholder="Password">
+        <span class="error"></span>
+        <input type="password" name="pw_conf" id="pw_conf" placeholder="Confirm Password">
+        <span class="error"></span>
+        <button type="submit">START YOUR CHRONICLE</button>
+        <a href="/">Already have an account? Login Here</a>
+    </form>
+{% endblock body %}

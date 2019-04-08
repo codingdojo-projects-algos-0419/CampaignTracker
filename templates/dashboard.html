@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<script src="{{ url_for('static', filename='scripts/dashboard.js') }}"></script>
+{% endblock head %}
+{% block header %}
+<a href="/logout">logout</a>
+{% endblock header %}
+{% block body %}
+<div class="dashboard">
+    <h2>My Campaigns</h2>
+    <div class="campaigns">
+        {% for campaign in campaigns %}
+        <a href="/campaigns/{{campaign.id}}" class="campaign">{{campaign.name}}</a>
+        {% endfor %}
+        <div class="campaign new">ADD NEW</div>
+        {% if (campaigns|length) % 2 == 0 %}
+            <div class="campaign blank"></div>
+        {% endif %}
+    </div>
+    <h2>Campaigns I'm In</h2>
+    <div class="campaigns">
+
+    </div>
+</div>
+{% endblock body %}
