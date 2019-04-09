@@ -1,0 +1,98 @@
+table.navbar{
+    display: none;
+}
+
+.widget h2{
+    margin: 10px;
+}
+
+.character{
+    border-top: 1px solid grey;
+    background-color: white;
+    color: black;
+}
+
+.character p{
+    padding: 5px;
+    padding-left: 10px;
+    font-weight: 700;
+}
+
+.first{
+    background-color: rgb(51, 51, 51);
+    color: white;
+    cursor: pointer;
+}
+
+.character p:last-child{
+    font-weight: 500;
+}
+
+input#search{
+    display: block;
+    padding: 5px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    margin: 10px auto;
+}
+
+button{
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    margin: 10px auto;
+    font-weight: 700;
+    font-size: 18px;
+    border: none;
+
+    background-color: black;
+    color: white;
+}
+
+div.update{
+    margin: 10px;
+    padding: 5px;
+    width: calc(100% - 20px);
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+div.update p:first-child{
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width:480px) {
+    table#navbar{
+        display: table;
+        width: 100%;
+        border-collapse: collapse;
+        height: 50px;
+        background-color: black;
+        color: white;
+
+        position: absolute;
+        bottom: 0;
+    }
+
+    table#navbar th{
+        border: 1px solid grey;
+        cursor: pointer;
+        width: 33.3%;
+    }
+
+    .widget{
+        background-color: white;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 100px);
+    }
+
+    p.first{
+        padding: 10px;
+    }
+}

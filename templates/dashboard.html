@@ -10,7 +10,7 @@
 <div class="dashboard">
     <h2>My Campaigns</h2>
     <div class="campaigns">
-        {% for campaign in campaigns %}
+        {% for campaign in user_campaigns %}
         <a href="/campaigns/{{campaign.id}}" class="campaign">{{campaign.name}}</a>
         {% endfor %}
         <div class="campaign new">ADD NEW</div>
@@ -20,7 +20,9 @@
     </div>
     <h2>Campaigns I'm In</h2>
     <div class="campaigns">
-
+        {% for campaign in player_campaigns %}
+        <a href="/campaigns/{{campaign.id}}" class="campaign">{{campaign.name}}</a>
+        {% endfor %}
     </div>
 </div>
 {% endblock body %}

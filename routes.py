@@ -9,3 +9,7 @@ app.add_url_rule('/login', view_func=login, methods=['POST'])
 app.add_url_rule('/logout', view_func=logout)
 app.add_url_rule('/campaigns/create', view_func=new_campaign, methods=['POST'])
 app.add_url_rule('/campaigns/<id>', view_func=show_campaign)
+
+#search and add player
+app.add_url_rule('/validate/<id>/user', view_func=validate_user)
+app.add_url_rule('/campaign/<id>/addplayer', view_func=add_player, methods=['POST'])

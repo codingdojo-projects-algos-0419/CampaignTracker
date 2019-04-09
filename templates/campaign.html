@@ -1,10 +1,67 @@
 {% extends 'layout.html' %}
 {% block head %}
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/campaign.css') }}">
+    <script src="{{ url_for('static', filename='scripts/campaign.js') }}"></script>
 {% endblock head %}
 {% block header %}
     
 {% endblock header %}
 {% block body %}
-    <h2>HELLO WORLD OF {{campaign.name}}</h2>
+    <div class="widget" id="players" style="z-index: 100">
+        <h2>Players</h2>
+        <div class="game-master">
+            <p>Game Master: {{master.email}}</p>
+        </div>
+        <div class="players">
+            {% for player in players %}
+                <p>{{player.email}}</p>
+            {% endfor %}
+        </div>
+        <div class="character">
+            <p class="first">character.name</p>
+            <div class="char-info">
+                <p>character.race</p>
+                <p>character.class</p>
+                <p>character.description</p>
+            </div>
+        </div>
+        <div class="character">
+            <p class="first">character.name</p>
+            <div class="char-info">
+                <p>character.race</p>
+                <p>character.class</p>
+                <p>character.description</p>
+            </div>
+        </div>
+        {% if session['userid'] == master.id %}
+            <div class="add-user">
+                <form action="/campaign/user/add" method="post" id="form-add-user">
+                    <input type="search" name="search" id="search" placeholder="User Email">
+                    <button type="submit" id="form-add-user-submit" style="background-color: grey">Add Player</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="widget" id="updates">
+        <h2>Updates</h2>
+        <div class="update">
+            <p>update.created_at</p>
+            <p>update.update</p>
+        </div>
+        <div class="update">
+            <p>update.created_at</p>
+            <p>update.update</p>
+        </div>
+    </div>
+    <div class="widget" id="chat">
+        <h2>Chat</h2>
+    </div>
+    <table id="navbar">
+        <tr>
+            <th id="nav-players">Players</th>
+            <th id="nav-updates">Updates</th>
+            <th id="nav-chat">Chat</th>
+        </tr>
+    </table>
 {% endblock body %}
