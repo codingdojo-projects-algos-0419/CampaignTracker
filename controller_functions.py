@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, session
+from flask import render_template, redirect, request, session, jsonify
 from config import db
 from models import *
 
@@ -51,6 +51,9 @@ def show_campaign(id):
     players = campaign.players
     return render_template('campaign.html', campaign=campaign, master=master, players=players)
 
+def get_user_id():
+    return str(session['userid'])
+
 def validate_user(id):
     campaign = Campaign.query.get(id)
     players = campaign.players
@@ -70,3 +73,10 @@ def add_player(id):
     campaign.players.append(user)
     db.session.commit()
     return str(user.email)
+
+def add_character():
+    print(request.form['name'])
+    character = Character.create(request.form, session)
+    schema = CharacterSchema()
+    output = schema.dump(character).data
+    return jsonify({"character", output})

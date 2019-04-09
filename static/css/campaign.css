@@ -1,4 +1,4 @@
-table.navbar{
+table#navbar{
     display: none;
 }
 
@@ -18,7 +18,7 @@ table.navbar{
     font-weight: 700;
 }
 
-.first{
+.player{
     background-color: rgb(51, 51, 51);
     color: white;
     cursor: pointer;
@@ -28,13 +28,14 @@ table.navbar{
     font-weight: 500;
 }
 
-input#search{
+input, textarea{
     display: block;
     padding: 5px;
     border: 1px solid grey;
     border-radius: 5px;
     width: calc(100% - 20px);
     margin: 10px auto;
+    resize: none;
 }
 
 button{
@@ -92,7 +93,7 @@ div.update p:first-child{
         height: calc(100% - 100px);
     }
 
-    p.first{
+    p.player{
         padding: 10px;
     }
 }

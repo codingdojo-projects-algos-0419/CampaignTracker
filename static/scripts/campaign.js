@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    //variables
+    pageId = window.location.pathname.split('/').pop()
+
     //mobile switching
     $('#nav-players').click(function(){
         $('.widget').css('z-index', '0')
@@ -17,10 +20,9 @@ $(document).ready(function(){
     error = true
     
     $('p.first').click(function(){
-        $(this).siblings('.char-info').slideToggle(200)
+        $(this).siblings('.character').slideToggle(200)
     })
     
-    pageId = window.location.pathname.split('/').pop()
     $('#search').keyup(function(){
         if ($(this).val().length > 5) {
             $.ajax({
@@ -55,9 +57,24 @@ $(document).ready(function(){
                 method: 'POST',
                 data: $('#search').serialize(),
                 success: function(data){
-                    console.log('post success')
-                    $('.players').append('<p>' + data + '</p>')
+                    $('#player-list').append('<p>' + data + '</p>')
                     $('#search').val('')
+                }
+            })
+        }
+        return false
+    })
+
+    //characters
+    $('#form-add-character').submit(function(){
+        if ($('#name').val().length > 0 && $('#race').val().length > 0 && $('#class').val().length > 0) {
+            console.log('clicked!')
+            $.ajax({
+                url: '/addcharacter',
+                method: 'POST',
+                data: $('#form-add-character').serialize(),
+                success: function(data){
+                    console.log(data)
                 }
             })
         }

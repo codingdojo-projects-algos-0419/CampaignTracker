@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/campaign.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/campaign.css') }}">
     <script src="{{ url_for('static', filename='scripts/campaign.js') }}"></script>
 {% endblock head %}
 {% block header %}
@@ -8,38 +8,38 @@
 {% endblock header %}
 {% block body %}
     <div class="widget" id="players" style="z-index: 100">
-        <h2>Players</h2>
         <div class="game-master">
             <p>Game Master: {{master.email}}</p>
         </div>
-        <div class="players">
+        <h2>Players</h2>
+        <div id="player-list">
             {% for player in players %}
-                <p>{{player.email}}</p>
+                <p class="player">{{player.email}}</p>
+                {% for character in player.characters %}
+                <div class="character">
+                    <p class="first">{{character.name}}</p>
+                    <div class="char-info">
+                        <p>{{character.race}}</p>
+                        <p>{{character.class}}</p>
+                        <p>{{character.description}}</p>
+                    </div>
+                </div>
+                {% endfor %}
             {% endfor %}
         </div>
-        <div class="character">
-            <p class="first">character.name</p>
-            <div class="char-info">
-                <p>character.race</p>
-                <p>character.class</p>
-                <p>character.description</p>
-            </div>
-        </div>
-        <div class="character">
-            <p class="first">character.name</p>
-            <div class="char-info">
-                <p>character.race</p>
-                <p>character.class</p>
-                <p>character.description</p>
-            </div>
-        </div>
         {% if session['userid'] == master.id %}
-            <div class="add-user">
-                <form action="/campaign/user/add" method="post" id="form-add-user">
-                    <input type="search" name="search" id="search" placeholder="User Email">
-                    <button type="submit" id="form-add-user-submit" style="background-color: grey">Add Player</button>
-                </form>
-            </div>
+            <form action="/campaign/user/add" method="post" id="form-add-user">
+                <input type="search" name="search" id="search" placeholder="User Email">
+                <button type="submit" id="form-add-user-submit" style="background-color: grey">Add Player</button>
+            </form>
+        {% else %}
+            <form action="/player/id/addcharacter" method="post" id="form-add-character">
+                <input type="text" name="name" id="name" placeholder="Character Name">
+                <input type="text" name="race" id="race" placeholder="Character Race">
+                <input type="text" name="class" id="class" placeholder="Character Class">
+                <textarea name="description" id="description" placeholder="Description"></textarea>
+                <button type="submit" id="form-add-character-submit">Add Character</button>
+            </form>
         {% endif %}
     </div>
 

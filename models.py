@@ -1,5 +1,5 @@
 from sqlalchemy.sql import func
-from config import db, bcrypt
+from config import db, bcrypt, ma
 
 players_table = db.Table('players',
                 db.Column('player_id', db.Integer, db.ForeignKey('user.id'), primary_key=True, nullable=False),
@@ -42,6 +42,17 @@ class Character(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', foreign_keys=[user_id], backref="characters", cascade="all")
+
+    @classmethod
+    def create(cls, data, ses):
+        new_character = cls(name=data['name'], race=data['race'], char_class=data['class'], description=data['description'], user_id=ses['userid'])
+        db.session.add(new_character)
+        db.session.commit()
+        return new_character
+
+class CharacterSchema(ma.Schema):
+    class Meta:
+        model = Character
 
 class Campaign(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
