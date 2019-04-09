@@ -7,24 +7,26 @@
     
 {% endblock header %}
 {% block body %}
-    <div class="widget" id="players" style="z-index: 100">
+    <div class="widget" id="players">
         <div class="game-master">
             <p>Game Master: {{master.email}}</p>
         </div>
         <h2>Players</h2>
         <div id="player-list">
             {% for player in players %}
-                <p class="player">{{player.email}}</p>
-                {% for character in player.characters %}
-                <div class="character">
-                    <p class="first">{{character.name}}</p>
-                    <div class="char-info">
-                        <p>{{character.race}}</p>
-                        <p>{{character.class}}</p>
-                        <p>{{character.description}}</p>
+                <p class="player player{{player.id}}">{{player.email}}</p>
+                <div class="character-list">
+                    {% for character in player.characters %}
+                    <div class="character">
+                        <p class="first">{{character.name}}</p>
+                        <div class="char-info">
+                            <p>{{character.race}}</p>
+                            <p>{{character.class}}</p>
+                            <p>{{character.description}}</p>
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             {% endfor %}
         </div>
         {% if session['userid'] == master.id %}
@@ -44,23 +46,27 @@
     </div>
 
     <div class="widget" id="updates">
-        <h2>Updates</h2>
-        <div class="update">
-            <p>update.created_at</p>
-            <p>update.update</p>
-        </div>
-        <div class="update">
-            <p>update.created_at</p>
-            <p>update.update</p>
-        </div>
+        <h2>Campaign Log</h2>
+        {% if session['userid'] == master.id %}
+            <form action="/submitupdate" method="post" id="form-update">
+                <textarea name="update" id="update" placeholder="New Campaign Log"></textarea>
+                <button type="submit">Add Log</button>
+            </form>
+        {% endif %}
+        {% for update in updates %}
+            <div class="update">
+                <p>{{update.created_at.strftime('%B %d %Y')}}</p>
+                <p>{{update.update}}</p>
+            </div>
+        {% endfor %}
     </div>
-    <div class="widget" id="chat">
+    <div class="widget" id="chat" style="z-index: 100">
         <h2>Chat</h2>
     </div>
     <table id="navbar">
         <tr>
             <th id="nav-players">Players</th>
-            <th id="nav-updates">Updates</th>
+            <th id="nav-updates">Log</th>
             <th id="nav-chat">Chat</th>
         </tr>
     </table>

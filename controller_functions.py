@@ -49,7 +49,10 @@ def show_campaign(id):
     campaign = Campaign.query.get(id)
     master = campaign.master
     players = campaign.players
-    return render_template('campaign.html', campaign=campaign, master=master, players=players)
+    updates = Update.query.all()
+    return render_template('campaign.html', campaign=campaign, master=master, players=players, updates=updates)
+
+#-----PLAYERS-----
 
 def get_user_id():
     return str(session['userid'])
@@ -75,8 +78,12 @@ def add_player(id):
     return str(user.email)
 
 def add_character():
-    print(request.form['name'])
     character = Character.create(request.form, session)
-    schema = CharacterSchema()
-    output = schema.dump(character).data
-    return jsonify({"character", output})
+    return str(session['userid'])
+
+#-----UPDATES-----
+
+def add_update(id):
+    update = Update.create(request.form, id)
+    date = update.created_at.strftime('%B %d %Y')
+    return date

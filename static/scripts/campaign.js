@@ -19,8 +19,8 @@ $(document).ready(function(){
     //players
     error = true
     
-    $('p.first').click(function(){
-        $(this).siblings('.character').slideToggle(200)
+    $('p.player').on('click', function(){
+        $(this).siblings('.character-list').slideToggle(200)
     })
     
     $('#search').keyup(function(){
@@ -68,13 +68,41 @@ $(document).ready(function(){
     //characters
     $('#form-add-character').submit(function(){
         if ($('#name').val().length > 0 && $('#race').val().length > 0 && $('#class').val().length > 0) {
-            console.log('clicked!')
             $.ajax({
                 url: '/addcharacter',
                 method: 'POST',
                 data: $('#form-add-character').serialize(),
                 success: function(data){
-                    console.log(data)
+                    $('.player' + data).after(`
+                    <div class="character">
+                        <p class="first">` + $('#name').val() + `</p>
+                        <div class="char-info">
+                            <p>` + $('#race').val() + `</p>
+                            <p>` + $('#class').val() + `</p>
+                            <p>` + $('#description').val() + `</p>
+                        </div>
+                    </div>
+                    `)
+                }
+            })
+        }
+        return false
+    })
+
+    //updates
+    $('#form-update').submit(function(){
+        if ($('#update').val().length > 0) {
+            $.ajax({
+                url: '/campaign/' + pageId + '/update',
+                method: 'POST',
+                data: $('#update').serialize(),
+                success: function(data){
+                    $('#form-update').after(`
+                    <div class="update">
+                        <p>` + data + `</p>
+                        <p>` + $('#update').val() + `</p>
+                    </div>
+                    `)
                 }
             })
         }

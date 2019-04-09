@@ -77,3 +77,10 @@ class Update(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
     campaign_id = db.Column(db.Integer, db.ForeignKey('campaign.id'), nullable=False)
     campaign = db.relationship('Campaign', foreign_keys=[campaign_id], backref="updates", cascade="all")
+
+    @classmethod
+    def create(cls, data, id):
+        new_update = cls(update=data['update'], campaign_id=id)
+        db.session.add(new_update)
+        db.session.commit()
+        return new_update

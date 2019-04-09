@@ -17,3 +17,6 @@ app.add_url_rule('/campaign/<id>/addplayer', view_func=add_player, methods=['POS
 
 #adds character
 app.add_url_rule('/addcharacter', view_func=add_character, methods=['POST'])
+
+#adds update to log
+app.add_url_rule('/campaign/<id>/update', view_func=add_update, methods=['POST'])
