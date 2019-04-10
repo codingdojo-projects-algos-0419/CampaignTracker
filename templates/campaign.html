@@ -61,7 +61,18 @@
         {% endfor %}
     </div>
     <div class="widget" id="chat" style="z-index: 100">
-        <h2>Chat</h2>
+        <div id="chatbox">
+            {% for message in messages %}
+                <div class="message">
+                    <p class="sender">{{message.user.email}}</p>
+                    <p class="message">{{message.message}}</p>
+                </div>
+            {% endfor %}
+            <form action="/messages" method="post" id="form-messages">
+                <input type="text" name="message" id="message" placeholder="message">
+                <button type="submit" id="chatbutton">Send</button>
+            </form>
+        </div>
     </div>
     <table id="navbar">
         <tr>

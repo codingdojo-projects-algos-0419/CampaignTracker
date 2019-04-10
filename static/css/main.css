@@ -6,10 +6,13 @@
 }
 
 div.header{
+    position: absolute;
+    top: 0;
     height: 50px;
     width: 100%;
     background-color: black;
     color: white;
+    z-index: 200;
 }
 
 div.header h1 a{
@@ -19,6 +22,13 @@ div.header h1 a{
     text-decoration: none;
     font-size: 32px;
     display: inline-block;
+}
+
+div.container{
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: calc(100% - 50px);
 }
 
 @media only screen and (max-width:480px) {

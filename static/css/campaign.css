@@ -65,6 +65,56 @@ div.update p:first-child{
     margin-bottom: 10px;
 }
 
+div#chatbox{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+form#form-messages{
+    padding: 0 10px;
+    background-color: grey;
+}
+
+input#message{
+    display: inline-block;
+    height: 30px;
+    width: calc(75% - 3px);
+    vertical-align: top;
+
+}
+
+button#chatbutton{
+    display: inline-block;
+    height: 30px;
+    font-size: 16px;
+    padding: 0;
+    width: calc(25% - 2px);
+}
+
+div.message{
+    border-top: 1px solid grey;
+}
+
+p.sender{
+    font-weight: 700;
+    padding: 5px 10px;
+}
+
+p.message{
+    background-color: crimson;
+    color: white;
+    padding: 5px;
+    margin: 5px 10px;
+    border-radius: 5px;
+}
+
+@media only screen and (min-width:480px) {
+    .widget{
+        width: 25%;
+    }
+}
+
 @media only screen and (max-width:480px) {
     table#navbar{
         display: table;
@@ -87,10 +137,10 @@ div.update p:first-child{
     .widget{
         background-color: white;
         position: absolute;
-        top: 50px;
+        top: 0;
         left: 0;
         width: 100%;
-        height: calc(100% - 100px);
+        height: calc(100% - 50px);
     }
 
     p.player{

@@ -50,7 +50,8 @@ def show_campaign(id):
     master = campaign.master
     players = campaign.players
     updates = Update.query.all()
-    return render_template('campaign.html', campaign=campaign, master=master, players=players, updates=updates)
+    messages = Message.query.filter_by(campaign_id=id)
+    return render_template('campaign.html', campaign=campaign, master=master, players=players, updates=updates, messages=messages)
 
 #-----PLAYERS-----
 
@@ -87,3 +88,23 @@ def add_update(id):
     update = Update.create(request.form, id)
     date = update.created_at.strftime('%B %d %Y')
     return date
+
+#-----CHAT-----
+
+def message(id):
+    message = Message.create(request.form, session, id)
+    user = User.query.get(session['userid'])
+    return str(user.email)
+
+def refresh(id):
+    pass
+#     length = Message.query.filter_by(campaign_id=id).count()
+#     old_length = length
+#     while old_length == length:
+#         length = Message.query.filter_by(campaign_id=id).count()
+#     message = Message.query.filter_by(campaign_id=id).order_by(Message.created_at.desc()).first()
+#     if message.player_id == session['userid']:
+#         return False
+#     message_schema = MessageSchema()
+#     output = message_schema.dump(message).data
+#     return jsonify({'message': 'output'})

@@ -96,7 +96,7 @@ $(document).ready(function(){
                 url: '/campaign/' + pageId + '/update',
                 method: 'POST',
                 data: $('#update').serialize(),
-                success: function(data){
+                success: function(data) {
                     $('#form-update').after(`
                     <div class="update">
                         <p>` + data + `</p>
@@ -108,4 +108,39 @@ $(document).ready(function(){
         }
         return false
     })
+
+    //chat
+
+    $('#form-messages').submit(function(){
+        console.log('pressed!')
+        if ($('#message').val().length > 0) {
+            $.ajax({
+                url: '/campaign/' + pageId + '/message',
+                method: 'POST',
+                data: $('#message').serialize(),
+                success: function(data) {
+                    $('#form-messages').before(`
+                    <div class="message">
+                        <p class="sender>` + data + `</p>
+                        <p class="message>` + $('#message').val() + `</p>
+                    </div>
+                    `)
+                }
+            })
+        }
+        return false;
+    });
+
+    (function refreshChat() {
+        setTimeout(function() {
+            $.ajax({
+                url: '/refresh/' + pageId,
+                success: function(data){
+                    console.log(data)
+                },
+                complete: refreshChat()
+            })
+        }, 2000);
+    })();
+
 })

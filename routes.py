@@ -20,3 +20,7 @@ app.add_url_rule('/addcharacter', view_func=add_character, methods=['POST'])
 
 #adds update to log
 app.add_url_rule('/campaign/<id>/update', view_func=add_update, methods=['POST'])
+
+#chat
+app.add_url_rule('/campaign/<id>/message', view_func=message, methods=['POST'])
+app.add_url_rule('/refresh/<id>', view_func=refresh)
