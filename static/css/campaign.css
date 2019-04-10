@@ -66,14 +66,13 @@ div.update p:first-child{
 }
 
 div#chatbox{
-    width: 100%;
     position: absolute;
     bottom: 0;
 }
 
 form#form-messages{
     padding: 0 10px;
-    background-color: grey;
+    background-color: grey;;
 }
 
 input#message{
@@ -102,6 +101,7 @@ p.sender{
 }
 
 p.message{
+    display: inline-block;
     background-color: crimson;
     color: white;
     padding: 5px;
@@ -110,8 +110,28 @@ p.message{
 }
 
 @media only screen and (min-width:480px) {
-    .widget{
-        width: 25%;
+    div.widget{
+        display: inline-block;
+        position: absolute;
+        width: 300px;
+    }
+    div#players{
+        top: 0;
+        bottom: 0;
+    }
+
+    div#updates{
+        width: 600px;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%)
+    }
+
+    div#chat{
+        bottom: 0;
+        right: 0;
+        width: 300px;
+        border-left: 10px solid black;
     }
 }
 
@@ -141,9 +161,14 @@ p.message{
         left: 0;
         width: 100%;
         height: calc(100% - 50px);
+        width: 100%;
     }
 
     p.player{
         padding: 10px;
+    }
+
+    #chatbox{
+        width: 100%;
     }
 }

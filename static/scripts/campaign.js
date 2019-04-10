@@ -121,8 +121,8 @@ $(document).ready(function(){
                 success: function(data) {
                     $('#form-messages').before(`
                     <div class="message">
-                        <p class="sender>` + data + `</p>
-                        <p class="message>` + $('#message').val() + `</p>
+                        <p class="sender">` + data + `</p>
+                        <p class="message">` + $('#message').val() + `</p>
                     </div>
                     `)
                 }
@@ -131,16 +131,16 @@ $(document).ready(function(){
         return false;
     });
 
-    (function refreshChat() {
-        setTimeout(function() {
-            $.ajax({
-                url: '/refresh/' + pageId,
-                success: function(data){
-                    console.log(data)
-                },
-                complete: refreshChat()
-            })
-        }, 2000);
-    })();
+    // (function refreshChat() {
+    //     setTimeout(function() {
+    //         $.ajax({
+    //             url: '/refresh/' + pageId,
+    //             success: function(data){
+    //                 console.log(data)
+    //             },
+    //             complete: refreshChat()
+    //         })
+    //     }, 2000);
+    // })();
 
 })

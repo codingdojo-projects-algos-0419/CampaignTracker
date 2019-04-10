@@ -45,7 +45,7 @@
         {% endif %}
     </div>
 
-    <div class="widget" id="updates">
+    <div class="widget" id="updates" style="z-index: 100">
         <h2>Campaign Log</h2>
         {% if session['userid'] == master.id %}
             <form action="/submitupdate" method="post" id="form-update">
@@ -60,7 +60,7 @@
             </div>
         {% endfor %}
     </div>
-    <div class="widget" id="chat" style="z-index: 100">
+    <div class="widget" id="chat">
         <div id="chatbox">
             {% for message in messages %}
                 <div class="message">
