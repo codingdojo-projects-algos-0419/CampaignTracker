@@ -31,6 +31,14 @@ div.container{
     height: calc(100% - 50px);
 }
 
+#logout{
+    color: white;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    text-decoration: none;
+}
+
 @media only screen and (max-width:480px) {
     div.header{
         text-align: center;

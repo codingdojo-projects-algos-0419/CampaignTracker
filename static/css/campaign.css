@@ -68,6 +68,7 @@ div.update p:first-child{
 div#chatbox{
     position: absolute;
     bottom: 0;
+    width: 100%;
 }
 
 form#form-messages{
